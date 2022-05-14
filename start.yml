@@ -1,0 +1,6 @@
+- name: Docker with Nginx demo
+  hosts: [dkr,localhost]
+  remote_user: lubo
+  become: true
+  roles:
+    - dkr
