@@ -1,0 +1,51 @@
+---
+
+- name: Apt installs
+  apt:
+    pkg:
+    - docker
+    - libio-socket-ssl-perl
+    - libnet-ssleay-perl
+    - sendemail
+    state: present
+    update_cache: yes
+
+- name: Create a login user
+  user:
+    name: "{{ user }}"
+    password: "{{ password }}"
+    groups:
+      - docker
+      - sudo
+    state: present
+
+
+- name: cp Dockerfile
+  become: true
+  copy:
+    src: Dockerfile
+    dest: "/home/{{ user }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+- name: cp HTML
+  become: true
+  copy:
+     src: cv.html
+     dest: "/home/{{ user }}"
+     owner: "{{ user }}"
+     group: "{{ user }}"
+
+
+
+- name: Docker Build
+  become: true
+  shell: |
+    cd "/home/{{ user }}"
+    docker build -t "{{ imagename }}" .
+
+- name: Docker Run
+  become: true
+  shell: |
+    cd "/home/{{ user }}"
+    docker run --rm -d -p "{{ wwwport }}":80 --name "{{ containername }}" "{{ imagename }}"
