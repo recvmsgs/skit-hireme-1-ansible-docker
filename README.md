@@ -6,6 +6,6 @@ ansible-playbook  start.yml -i ./hosts.yml -vv -Kk -u `YOUR_SUDO_CAPABLE_INSTALL
 
 
 SSH Credentials for the deployed user who owns files and builds the container:
-- Username: dkr
-- Password: hesl0
+- Username: `dkr`
+- Password: `hesl0`
 
