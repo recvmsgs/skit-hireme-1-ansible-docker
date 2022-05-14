@@ -1,0 +1,6 @@
+---
+user: dkr
+password: $6$fZXmF4dLWWXdamiK$asmRNw1vvO0E/oKWtsZZsENdXTkg.0fI5XDXR06rfKzjFTGzS07qxH1IiHkSdPPdCSVsoMeAbYEAD9z1SSx/U0
+imagename: skit-www
+containername: skit-cv
+wwwport: 8888
